@@ -29,40 +29,47 @@ import { createSlice } from "@reduxjs/toolkit"; // createSlice는 Reducer 만드
 // };
 
 // initialState
-const initialState = [
-  {
-    id: uuid(),
-    isDone: false,
-    todo: "1시다",
-  },
-];
+// const initialState = [
+//   {
+//     id: uuid(),
+//     isDone: false,
+//     todo: "1시다",
+//   },
+// ];
 
 const todosSlice = createSlice({
   name: "todos",
-  initialState,
-  reducers: {
-    addTodo(state, action) {
-      state = [...state, action.payload.newTodo];
-      console.log("aaa", state);
+  initialState: [
+    {
+      id: uuid(),
+      isDone: false,
+      todo: "1시다",
     },
-    // deleteTodo(state, action) {
-    //   state.filter((prev) => prev.id !== action.payload.t.id);
-    // },
-    // toggleTodo(state, action) {
-    //   state.map((prev) => {
-    //     if (prev.id === action.payload.t.id) {
-    //       return { ...prev, isDone: !prev.isDone };
-    //     } else {
-    //       return prev;
-    //     }
-    //   });
-    // },
+  ],
+  reducers: {
+    addTodo: (state, action) => {
+      return [...state, action.payload];
+      // state.push(action.payload);
+    },
+    deleteTodo(state, action) {
+      // return state.filter((prev) => prev.id !== action.payload);
+      const index = state.indexOf(action.payload);
+      state.splice(index, 1);
+    },
+    toggleTodo(state, action) {
+      state.map((prev) => {
+        if (prev.id === action.payload) {
+          return (prev.isDone = !prev.isDone);
+        } else {
+          return prev;
+        }
+      });
+    },
   },
 });
 
-export const todosActions = todosSlice.actions;
 export default todosSlice.reducer;
-
+export const todosActions = todosSlice.actions;
 // // reducer
 // const todos = (state = initialState, action) => {
 //   switch (action.type) {

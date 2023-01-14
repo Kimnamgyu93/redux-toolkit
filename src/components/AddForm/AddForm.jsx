@@ -27,7 +27,7 @@ export default function AddForm() {
       todo: todo,
     };
 
-    dispatch(todosActions.addTodo({ newTodo }));
+    dispatch(todosActions.addTodo(newTodo));
     setTodoValue("");
   };
 

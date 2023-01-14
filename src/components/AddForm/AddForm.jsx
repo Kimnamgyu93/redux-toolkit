@@ -5,8 +5,6 @@ import Button from "../Button/Button";
 import { todosActions } from "../../redux/modules/todos";
 
 export default function AddForm() {
-  // input 값 넣기
-  // 넣은 값을 todos에 저장하기
   const [todoValue, setTodoValue] = useState("");
   const dispatch = useDispatch();
   const inputChangeHandle = (e) => {
